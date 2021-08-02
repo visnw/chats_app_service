@@ -9,6 +9,7 @@ public class ChatAppServiceHandler implements RequestHandler<APIGatewayProxyRequ
     @Override
     public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent event, Context context)
     {
+
         APIGatewayProxyResponseEvent response = new APIGatewayProxyResponseEvent();
         RequestNavigator.processRequest(event, response);
         response.setStatusCode(200);

@@ -6,6 +6,7 @@ import com.vssv.chatsapp.service.MessageService;
 import com.vssv.chatsapp.service.SignUp;
 import com.vssv.chatsapp.utils.BaseUtils;
 
+import java.net.HttpCookie;
 import java.util.Map;
 
 public class RequestNavigator {
@@ -26,23 +27,27 @@ public class RequestNavigator {
     }
 
     private Map<String, Object> doProcessRequest(){
-        String methodName = path.replaceFirst(BASE_PATH, "");
-        switch (methodName) {
-            case "/login" :
-                return BaseUtils.makeResponse(true, "Login not supported");
-            case "/signUp" :
-                return SignUp.processRequest(paramMap);
-            case "/getMessage" :
-                return MessageService.processRequest(paramMap);
-            default:
-                return BaseUtils.makeResponse(false, "path not supported");
+        // /login
+
+        if(validateAuth()){
+            String methodName = path.replaceFirst(BASE_PATH, "");
+            switch (methodName) {
+                case "/login" :
+                    return BaseUtils.makeResponse(true, "Login not supported");
+                case "/signUp" :
+                    return SignUp.processRequest(paramMap);
+                case "/getMessage" :
+                    return MessageService.processRequest(paramMap);
+                default:
+                    return BaseUtils.makeResponse(false, "path not supported");
+            }
         }
+        return null;
     }
 
-
-
-
-
+    private boolean validateAuth() {
+        return true;
+    }
 
 
 }
