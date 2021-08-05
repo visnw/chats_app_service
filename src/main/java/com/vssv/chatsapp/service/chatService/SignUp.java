@@ -1,4 +1,4 @@
-package com.vssv.chatsapp.service;
+package com.vssv.chatsapp.service.chatService;
 
 import com.vssv.chatsapp.utils.BaseUtils;
 import com.vssv.chatsapp.dao.DynamoDao;

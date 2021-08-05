@@ -1,20 +1,21 @@
-package com.vssv.chatsapp.service;
+package com.vssv.chatsapp.service.chatService;
 
-import com.vssv.chatsapp.utils.BaseUtils;
 import com.vssv.chatsapp.dao.DynamoDao;
+import com.vssv.chatsapp.utils.BaseUtils;
 
 import java.util.Map;
 
-public class MessageService extends BaseUtils {
+public class ChatPage extends BaseUtils {
 
-    public Map<String, Object> getMessage(Map<String, Object> paramMap){
+    public Map<String, Object> getPageDetails(Map<String, Object> paramMap){
         String chatId = getString(paramMap, "chat_id");
         return makeResponse(true,
                 DynamoDao.getInstance().getData("user_details", chatId));
     }
 
     public static Map<String, Object> processRequest(Map<String, Object> paramMap) {
-        MessageService messageService = new MessageService();
-        return messageService.getMessage(paramMap);
+        ChatPage chatPage = new ChatPage();
+        return chatPage.getPageDetails(paramMap);
     }
+
 }
